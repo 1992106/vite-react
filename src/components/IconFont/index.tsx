@@ -4,7 +4,7 @@ import { createFromIconfontCN } from '@ant-design/icons'
 import setting from '@/src/config'
 import './index.less'
 
-interface IConProps {
+interface IconProps {
   type: string
   className?: string
   size?: string | number
@@ -18,7 +18,7 @@ const prefixCls = 'my-icon'
 
 const IconFont = createFromIconfontCN({ scriptUrl: setting.iconfont_url })
 
-const MyIcon: React.FC<IConProps> = ({
+const MyIcon: React.FC<IconProps> = ({
   type = '',
   className = '',
   size = 18,

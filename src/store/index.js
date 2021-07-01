@@ -20,7 +20,7 @@ if (import.meta.env.DEV) {
 
 export default configureStore({
   reducer: rootReducer,
-  middleware: (getDefaultMiddleware) => {
+  middleware: getDefaultMiddleware => {
     return getDefaultMiddleware().concat(middleware)
   },
   devTools: true

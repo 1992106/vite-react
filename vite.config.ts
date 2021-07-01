@@ -21,7 +21,7 @@ export default ({ mode }: ConfigEnv) => {
           {
             libraryName: 'antd',
             esModule: true,
-            resolveStyle: (name) => `antd/es/${name}/style/index`
+            resolveStyle: name => `antd/es/${name}/style/index`
           }
         ]
       }),
@@ -49,10 +49,8 @@ export default ({ mode }: ConfigEnv) => {
       preprocessorOptions: {
         less: {
           modifyVars: {},
-          javascriptEnabled: true
-        },
-        scss: {
-          additionalData: '@import "./src/styles/global.scss";'
+          javascriptEnabled: true,
+          additionalData: '@import "./src/styles/global.less";'
         }
       }
     },

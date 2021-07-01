@@ -30,6 +30,6 @@ module.exports = {
     'import/extensions': 0,
     'import/no-extraneous-dependencies': 0,
     'import/no-unresolved': 0,
-    'no-param-reassign': 0
+    'no-unused-vars': [2, { args: 'none' }]
   }
 }

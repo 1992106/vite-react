@@ -1,6 +1,6 @@
 module.exports = {
-  // 一行最多 80 字符
-  printWidth: 80,
+  // 一行最多 100 字符
+  printWidth: 100,
   // 使用 2 个空格缩进
   tabWidth: 2,
   // 不使用缩进符，而使用空格
@@ -17,10 +17,10 @@ module.exports = {
   trailingComma: 'none',
   // 大括号内的首尾需要空格
   bracketSpacing: true,
-  // jsx 标签的反尖括号需要换行
+  // jsx 标签的反尖括号不换行
   jsxBracketSameLine: false,
-  // 箭头函数，只有一个参数的时候，也需要括号
-  arrowParens: 'always',
+  // 箭头函数，只有一个参数的时候，省略括号
+  arrowParens: 'avoid',
   // 每个文件格式化的范围是文件的全部内容
   rangeStart: 0,
   rangeEnd: Infinity,

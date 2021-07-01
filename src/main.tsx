@@ -4,6 +4,7 @@ import { Provider } from 'react-redux'
 import store from '@/store/index'
 
 import App from '@/src/App'
+import '@/src/styles/index.less'
 import 'nprogress/nprogress.css'
 
 ReactDOM.render(

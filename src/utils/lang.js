@@ -3,7 +3,7 @@
  * @param value
  * @returns {string}
  */
-export const getTag = (value) => {
+export const getTag = value => {
   return Object.prototype.toString.call(value)
 }
 
@@ -12,7 +12,7 @@ export const getTag = (value) => {
  * @param value
  * @returns {string}
  */
-export const getType = (value) => {
+export const getType = value => {
   return getTag(value).slice(8, -1).toLowerCase()
 }
 
@@ -21,15 +21,11 @@ export const getType = (value) => {
  * @param value
  * @returns {boolean}
  */
-export const isEmpty = (value) => {
+export const isEmpty = value => {
   if (value == null) {
     return true
   }
-  if (
-    Array.isArray(value) ||
-    typeof value === 'string' ||
-    value instanceof String
-  ) {
+  if (Array.isArray(value) || typeof value === 'string' || value instanceof String) {
     return value.length === 0
   }
   if (value instanceof Map || value instanceof Set) {
@@ -46,9 +42,9 @@ export const isEmpty = (value) => {
  * @param object
  * @returns {*}
  */
-export const toEmpty = (object) => {
+export const toEmpty = object => {
   if (getType(object) === 'object') {
-    Object.keys(object).forEach((key) => {
+    Object.keys(object).forEach(key => {
       if (isEmpty(object[key])) {
         delete object[key]
       }
@@ -65,14 +61,12 @@ export const toEmpty = (object) => {
  */
 export function polyfill(target, source) {
   const obj = {}
-  Object.keys(target).forEach((key) => {
+  Object.keys(target).forEach(key => {
     if (isEmpty(source[key])) {
       obj[key] = target[key]
     } else {
       obj[key] =
-        getType(target[key]) === 'object'
-          ? polyfill(target[key], source[key])
-          : source[key]
+        getType(target[key]) === 'object' ? polyfill(target[key], source[key]) : source[key]
     }
   })
   return obj

@@ -6,7 +6,21 @@ import Test from '@/pages/Test'
 const routesConfig: RouteConfig[] = [
   {
     path: '/',
-    component: AppLayout
+    component: AppLayout,
+    routes: [
+      {
+        path: '/home',
+        component: Home,
+        name: '首页',
+        icon: 'icon-layout'
+      },
+      {
+        path: '/app',
+        component: Test,
+        name: '测试',
+        icon: 'icon-menu'
+      }
+    ]
   },
   {
     path: '/home',

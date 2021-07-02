@@ -8,6 +8,7 @@ import AppFooter from './Footer'
 import './index.less'
 
 const LayoutComponent: React.FC<RouteConfigComponentProps> = ({ route }) => {
+  const routes = route?.routes || []
   const [collapsed, setCollapsed] = useState(false)
 
   const onToggle = () => {
@@ -15,11 +16,11 @@ const LayoutComponent: React.FC<RouteConfigComponentProps> = ({ route }) => {
   }
 
   return (
-    <Layout className='page-layout'>
-      <AppSider collapsed={collapsed} routes={route?.routes} />
+    <Layout className='app-layout'>
+      <AppSider collapsed={collapsed} routes={routes} />
       <Layout>
-        <AppHeader collapsed={collapsed} onToggle={onToggle} routes={route?.routes} />
-        <Layout.Content className='page-content'>{renderRoutes(route?.routes)}</Layout.Content>
+        <AppHeader collapsed={collapsed} onToggle={onToggle} routes={routes} />
+        <Layout.Content className='app-content'>{renderRoutes(routes)}123</Layout.Content>
         <AppFooter />
       </Layout>
     </Layout>

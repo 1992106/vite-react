@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Layout } from 'antd'
 import MyLogo from '../Logo'
-import MyBreadcrumb from '../Breadcrumb'
+import MyMenu from '../Menu'
 
 interface SiderProps {
   collapsed: boolean
@@ -21,7 +21,7 @@ const SiderComponent: React.FC<SiderProps> = ({ collapsed, routes }) => {
       width={200}
     >
       <MyLogo collapsed={collapsed} />
-      <MyBreadcrumb routes={routes} />
+      <MyMenu collapsed={collapsed} routes={routes} />
     </Layout.Sider>
   )
 }

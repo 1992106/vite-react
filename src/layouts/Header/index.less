@@ -1,0 +1,21 @@
+.app-header {
+  .flexRAC();
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: @bg-color !important;
+  padding: 0 10px !important;
+  height: @header-height !important;
+  line-height: @header-height !important;
+  box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+
+  .breadcrumb {
+    .flexRAC();
+    height: 100%;
+    .collapsed {
+      padding: 0 24px 0 0;
+      cursor: pointer;
+    }
+  }
+}

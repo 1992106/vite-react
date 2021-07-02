@@ -1,19 +1,23 @@
 import React, { useState, useEffect } from 'react'
+import PropTypes from 'prop-types'
 import { useLocation } from 'react-router-dom'
 import { Breadcrumb } from 'antd'
 import './index.less'
-import PropTypes from 'prop-types'
 
-const BreadcrumbComponent = ({ routes }) => {
+interface BreadcrumbProps {
+  routes?: any[]
+}
+
+const BreadcrumbComponent: React.FC<BreadcrumbProps> = ({ routes = [] }) => {
   const { pathname } = useLocation()
-  const [breadcrumb, setBreadcrumb] = useState([])
+  const [breadcrumb, setBreadcrumb] = useState<string[]>([])
 
   useEffect(() => {
     const bread = pathname
       .split('/')
       .slice(1)
       .reduce(
-        (obj, cur) => {
+        (obj: { list: any[]; items: string[] }, cur) => {
           const target = obj.list.find(item => item.path === `/${cur}`) || {}
           return {
             list: target.children || [],
@@ -26,7 +30,7 @@ const BreadcrumbComponent = ({ routes }) => {
   }, [pathname, routes])
 
   return (
-    <Breadcrumb separator='>' className='headerBreadcrumb'>
+    <Breadcrumb separator='>' className='my-breadcrumb'>
       {breadcrumb.map((item, idx) => (
         <Breadcrumb.Item key={item + idx}>{item}</Breadcrumb.Item>
       ))}

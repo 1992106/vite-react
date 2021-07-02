@@ -2,9 +2,10 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { renderRoutes, RouteConfigComponentProps } from 'react-router-config'
 import { Layout } from 'antd'
-import MySider from '@/src/layouts/Sider'
-import MyHeader from '@/src/layouts/Header'
-import MyFooter from '@/src/layouts/Footer'
+import AppSider from './Sider'
+import AppHeader from './Header'
+import AppFooter from './Footer'
+import './index.less'
 
 const LayoutComponent: React.FC<RouteConfigComponentProps> = ({ route }) => {
   const [collapsed, setCollapsed] = useState(false)
@@ -14,12 +15,12 @@ const LayoutComponent: React.FC<RouteConfigComponentProps> = ({ route }) => {
   }
 
   return (
-    <Layout>
-      <MySider collapsed={collapsed} />
+    <Layout className='page-layout'>
+      <AppSider collapsed={collapsed} routes={route?.routes} />
       <Layout>
-        <MyHeader collapsed={collapsed} onToggle={onToggle} />
-        <Layout.Content>{renderRoutes(route?.routes)}</Layout.Content>
-        <MyFooter />
+        <AppHeader collapsed={collapsed} onToggle={onToggle} routes={route?.routes} />
+        <Layout.Content className='page-content'>{renderRoutes(route?.routes)}</Layout.Content>
+        <AppFooter />
       </Layout>
     </Layout>
   )

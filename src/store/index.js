@@ -1,12 +1,12 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import logger from 'redux-logger'
 // import { routesReducer } from './routes'
-// import { userReducer } from './user'
+import { userReducer } from './user'
 // import { dictReducer } from './dict'
 
 const rootReducer = combineReducers({
   // routes: routesReducer,
-  // user: userReducer,
+  user: userReducer
   // dict: dictReducer
 })
 

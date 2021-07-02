@@ -1,33 +1,34 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Layout } from 'antd'
-import MyLogo from '@/src/layouts/Logo'
-import './index.less'
+import MyLogo from '../Logo'
+import MyBreadcrumb from '../Breadcrumb'
 
 interface SiderProps {
   collapsed: boolean
+  routes?: any[]
 }
 
-const prefixCls = 'my-sider'
-
-const SiderComponent: React.FC<SiderProps> = ({ collapsed }) => {
+const SiderComponent: React.FC<SiderProps> = ({ collapsed, routes }) => {
   return (
     <Layout.Sider
-      className={`${prefixCls}`}
+      className='app-sider'
       theme='light'
       trigger={null}
       collapsible
       collapsed={collapsed}
       collapsedWidth={64}
-      width={180}
+      width={200}
     >
       <MyLogo collapsed={collapsed} />
+      <MyBreadcrumb routes={routes} />
     </Layout.Sider>
   )
 }
 
 SiderComponent.propTypes = {
-  collapsed: PropTypes.bool.isRequired
+  collapsed: PropTypes.bool.isRequired,
+  routes: PropTypes.array
 }
 
 export default SiderComponent

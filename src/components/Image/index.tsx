@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 
 interface ImageProps {
   /** 图片路径 */
-  src: string
+  src?: string
   /** 是否预览 */
   preview?: boolean | PreviewType
   /** 缩放宽度 */
@@ -69,7 +69,7 @@ const MyImage: React.FC<ImageProps> = ({ src, preview = false, ...props }) => {
 }
 
 MyImage.propTypes = {
-  src: PropTypes.string.isRequired,
+  src: PropTypes.string,
   preview: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
   width: PropTypes.number,
   height: PropTypes.number,

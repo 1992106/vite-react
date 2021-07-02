@@ -1,5 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import logo from '@/src/assets/logo.svg'
+import './index.less'
 
 interface LogoProps {
   collapsed: boolean
@@ -8,7 +10,7 @@ interface LogoProps {
 const LogoComponent: React.FC<LogoProps> = ({ collapsed }) => {
   return (
     <div className='my-logo'>
-      <img src='../../assets/logo.svg' alt='' />
+      <img src={logo} alt='logo' />
       {!collapsed && <h2 className='title'>Mars-SCM</h2>}
     </div>
   )

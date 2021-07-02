@@ -6,47 +6,60 @@ import './index.less'
 
 interface IconProps {
   type: string
-  className?: string
   size?: string | number
-  spin?: boolean
-  style?: object
-  rotate?: number
   color?: string
+  spin?: boolean
+  rotate?: number
+  className?: string
+  style?: object
+  scriptUrl?: string
 }
 
 const prefixCls = 'my-icon'
 
-const IconFont = createFromIconfontCN({ scriptUrl: setting.iconfont_url })
+let IconFont = createFromIconfontCN({ scriptUrl: setting.iconfont_url })
 
 const MyIcon: React.FC<IconProps> = ({
-  type = '',
-  className = '',
-  size = 18,
+  type,
+  size = 14,
+  color = 'unset',
   spin,
-  style = {},
   rotate,
-  color = '#333'
+  className = '',
+  style = {},
+  scriptUrl
 }) => {
-  size = typeof size === 'number' ? `${size}px` : size
-  const newStyle = { color, fontSize: size, transform: '', ...style }
-  rotate && (newStyle.transform = `${newStyle.transform} rotate(${rotate}deg)`)
+  if (scriptUrl) {
+    IconFont = createFromIconfontCN({ scriptUrl })
+  }
+
+  const fs = parseFloat(size + '')
+
+  const wrapStyle = {
+    color,
+    fontSize: `${fs}px`,
+    ...(rotate ? { transform: `rotate(${rotate}deg)` } : {}),
+    ...style
+  }
+
   return (
     <IconFont
       type={type}
       className={`${prefixCls} ${className} ${spin && 'anticon-spin'}`}
-      style={{ ...newStyle }}
+      style={wrapStyle}
     />
   )
 }
 
 MyIcon.propTypes = {
   type: PropTypes.string.isRequired,
-  className: PropTypes.string,
   size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  color: PropTypes.string,
   spin: PropTypes.bool,
-  style: PropTypes.object,
   rotate: PropTypes.number,
-  color: PropTypes.string
+  className: PropTypes.string,
+  style: PropTypes.object,
+  scriptUrl: PropTypes.string
 }
 
 export default MyIcon

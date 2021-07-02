@@ -11,24 +11,18 @@ const routesConfig: RouteConfig[] = [
       {
         path: '/home',
         component: Home,
-        name: '首页',
-        icon: 'icon-layout'
+        meta: {
+          title: '仪表盘',
+          icon: 'icon-dashboard'
+        }
       },
       {
         path: '/app',
         component: Test,
-        name: '测试',
-        icon: 'icon-menu'
-      }
-    ]
-  },
-  {
-    path: '/home',
-    component: Home,
-    routes: [
-      {
-        path: '/app',
-        component: Test
+        meta: {
+          title: '测试',
+          icon: 'icon-layout'
+        }
       }
     ]
   }

@@ -15,14 +15,14 @@ const initMenus = (routes: any[] = [], parent = '') => {
     return item.routes && item.routes.length > 0 ? (
       <Menu.SubMenu
         key={path}
-        icon={item.icon && <MyIcon type={item.icon} size={14} />}
-        title={item.name}
+        icon={item?.meta?.icon && <MyIcon type={item?.meta?.icon} size={14} />}
+        title={item?.meta?.title}
       >
         {initMenus(item.routes, path)}
       </Menu.SubMenu>
     ) : !item.hidden ? (
-      <Menu.Item key={path} icon={item.icon && <MyIcon type={item.icon} size={14} />}>
-        <Link to={path}>{item.name}</Link>
+      <Menu.Item key={path} icon={item?.meta?.icon && <MyIcon type={item?.meta?.icon} size={14} />}>
+        <Link to={path}>{item?.meta?.title}</Link>
       </Menu.Item>
     ) : null
   })

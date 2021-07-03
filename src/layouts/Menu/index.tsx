@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { useLocation, Link } from 'react-router-dom'
 import { Menu } from 'antd'
 import MyIcon from '@/components/IconFont'
+import './index.less'
 
 interface MenuProps {
   collapsed: boolean
@@ -66,17 +67,19 @@ const MenuComponent: React.FC<MenuProps> = ({ collapsed, routes }) => {
   }
 
   return (
-    <Menu
-      mode='inline'
-      style={{ border: 0 }}
-      inlineCollapsed={collapsed}
-      openKeys={openKeys}
-      selectedKeys={selectedKeys}
-      onClick={onClick}
-      onOpenChange={onOpenChange}
-    >
-      {initMenus(routes)}
-    </Menu>
+    <div className='my-menu'>
+      <Menu
+        mode='inline'
+        style={{ border: 0 }}
+        inlineCollapsed={collapsed}
+        openKeys={openKeys}
+        selectedKeys={selectedKeys}
+        onClick={onClick}
+        onOpenChange={onOpenChange}
+      >
+        {initMenus(routes)}
+      </Menu>
+    </div>
   )
 }
 

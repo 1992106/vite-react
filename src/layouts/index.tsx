@@ -20,7 +20,7 @@ const LayoutComponent: React.FC<RouteConfigComponentProps> = ({ route }) => {
       <AppSider collapsed={collapsed} routes={routes} />
       <Layout>
         <AppHeader collapsed={collapsed} onToggle={onToggle} routes={routes} />
-        <Layout.Content className='app-content'>{renderRoutes(routes)}123</Layout.Content>
+        <Layout.Content className='app-content'>{renderRoutes(routes)}</Layout.Content>
         <AppFooter />
       </Layout>
     </Layout>

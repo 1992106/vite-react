@@ -1,7 +1,7 @@
 import { ConfigEnv, loadEnv } from 'vite'
 import reactRefresh from '@vitejs/plugin-react-refresh'
 import legacy from '@vitejs/plugin-legacy'
-import react from 'vite-preset-react'
+// import react from 'vite-preset-react'
 import styleImport from 'vite-plugin-style-import'
 import ViteHtml from 'vite-plugin-html'
 import path from 'path'
@@ -17,7 +17,7 @@ export default ({ mode }: ConfigEnv) => {
         targets: ['ie >= 11'],
         additionalLegacyPolyfills: ['regenerator-runtime/runtime']
       }),
-      react({ removeDevtoolsInProd: true, injectReact: true }),
+      // react({ removeDevtoolsInProd: true, injectReact: true }),
       styleImport({
         libs: [
           {

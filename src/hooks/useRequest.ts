@@ -28,15 +28,14 @@ export function useRequest(
       try {
         setLoading(true)
         // TODO: URL
-        const { data = {} } = (await request('', params)) || {}
+        const { data = {} } = (await request('', paramsJson)) || {}
         setData(data)
-      } catch (err) {
+      } catch (err: any) {
         setError(err)
       } finally {
         setLoading(false)
       }
     })()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [paramsJson])
 
   const search = useCallback(e => setParams(e), [])

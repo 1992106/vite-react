@@ -18,10 +18,10 @@ const BreadcrumbComponent: React.FC<BreadcrumbProps> = ({ routes = [] }) => {
       .slice(1)
       .reduce(
         (obj: { list: any[]; items: string[] }, cur) => {
-          const target = obj.list.find(item => item.path === `/${cur}`) || {}
+          const target = obj.list.find((item) => item.path.includes(`/${cur}`)) || {}
           return {
-            list: target.children || [],
-            items: [...obj.items, target.name]
+            list: target?.routes || [],
+            items: [...obj.items, target?.meta?.title]
           }
         },
         { list: routes, items: [] }

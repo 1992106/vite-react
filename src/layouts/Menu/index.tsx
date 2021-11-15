@@ -11,19 +11,20 @@ interface MenuProps {
 }
 
 const initMenus = (routes: any[] = [], parent = '') => {
-  return routes.map(item => {
+  return routes.map((item) => {
     const path = parent + item.path
     return item.routes && item.routes.length > 0 ? (
       <Menu.SubMenu
         key={path}
-        icon={item?.meta?.icon && <MyIcon type={item?.meta?.icon} size={14} />}
-        title={item?.meta?.title}
-      >
+        icon={item?.meta?.icon && <MyIcon type={item?.meta?.icon} size={20} />}
+        title={item?.meta?.title}>
         {initMenus(item.routes, path)}
       </Menu.SubMenu>
-    ) : !item.hidden ? (
-      <Menu.Item key={path} icon={item?.meta?.icon && <MyIcon type={item?.meta?.icon} size={14} />}>
-        <Link to={path}>{item?.meta?.title}</Link>
+    ) : !item?.meta?.hidden ? (
+      <Menu.Item
+        key={item.path}
+        icon={item?.meta?.icon && <MyIcon type={item?.meta?.icon} size={20} />}>
+        <Link to={item.path}>{item?.meta?.title}</Link>
       </Menu.Item>
     ) : null
   })
@@ -39,7 +40,7 @@ const MenuComponent: React.FC<MenuProps> = ({ collapsed, routes }) => {
     return pathname
       .split('/')
       .slice(1, end)
-      .map(item => {
+      .map((item) => {
         return (str += `/${item}`)
       })
   }
@@ -71,12 +72,10 @@ const MenuComponent: React.FC<MenuProps> = ({ collapsed, routes }) => {
       <Menu
         mode='inline'
         style={{ border: 0 }}
-        inlineCollapsed={collapsed}
         openKeys={openKeys}
         selectedKeys={selectedKeys}
         onClick={onClick}
-        onOpenChange={onOpenChange}
-      >
+        onOpenChange={onOpenChange}>
         {initMenus(routes)}
       </Menu>
     </div>

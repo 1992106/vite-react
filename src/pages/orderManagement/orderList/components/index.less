@@ -1,0 +1,41 @@
+// 打印标签
+.print-tag-wrap {
+  color: #000;
+  .flex {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+  .barcode {
+    justify-content: space-between;
+  }
+  .content {
+    padding-top: 12px;
+    border-top: 1px solid #000;
+    margin-top: 12px;
+    & > span {
+      width: 100px;
+    }
+  }
+}
+// 打印发货单
+.print-deliver-order-wrap {
+  .ant-space {
+    display: flex;
+    justify-content: space-between
+  }
+  .table-header {
+    font-size: 18px;
+    background-color: #000;
+    margin-bottom: 6px;
+    text-align: center;
+    margin-top: 12px;
+  }
+  .table-footer {
+    margin-top: 16px;
+  }
+  * {
+    color: #000;
+    border-color: #000 !important;
+  }
+}

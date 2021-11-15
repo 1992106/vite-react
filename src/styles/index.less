@@ -3,8 +3,20 @@
 .page-content {
   width: calc(100% - 32px);
   height: calc(100% - 32px);
-  background: @bg-color;
+  //background: @bg-color;
   margin: 16px;
+  overflow: hidden;
+}
+
+.my-modal {
+  .ant-form {
+    & > .ant-form-item:last-of-type {
+      margin-bottom: 0;
+    }
+    .ant-input-number {
+      width: 100%;
+    }
+  }
 }
 
 #nprogress {
@@ -48,4 +60,9 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(0, 0, 0, 0.14);
+}
+
+// a链接
+a.ant-pro-form-collapse-button {
+  color: @text-color;
 }

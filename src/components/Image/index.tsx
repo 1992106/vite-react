@@ -29,14 +29,9 @@ interface PreviewType {
 
 const prefixCls = 'my-image'
 
-const MyImage: React.FC<ImageProps> = ({ src, preview = false, ...props }) => {
+const RImage: React.FC<ImageProps> = ({ src, preview = false, ...props }) => {
   // 预览
   const [visible, setVisible] = useState(false)
-
-  let resize = ''
-  resize += props.width ? `,w_${props.width | 0}` : ''
-  resize += props.height ? `,h_${props.height | 0}` : ''
-  resize = resize ? `?x-oss-process=image/resize,limit_0${resize}` : ''
 
   let className: string = `${prefixCls} ${props?.shape === 'circle' ? 'circle' : ''}`
 
@@ -57,7 +52,7 @@ const MyImage: React.FC<ImageProps> = ({ src, preview = false, ...props }) => {
     <Image
       {...props}
       preview={previewType}
-      src={`${src}${resize}`}
+      src={src}
       width={props.width}
       height={props.height}
       placeholder={<Icon type='icon-loading' spin size={20} color='#eee' />}
@@ -68,7 +63,7 @@ const MyImage: React.FC<ImageProps> = ({ src, preview = false, ...props }) => {
   )
 }
 
-MyImage.propTypes = {
+RImage.propTypes = {
   src: PropTypes.string,
   preview: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
   width: PropTypes.number,
@@ -76,4 +71,4 @@ MyImage.propTypes = {
   shape: PropTypes.oneOf(['circle', 'square'])
 }
 
-export default MyImage
+export default RImage

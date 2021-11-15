@@ -11,6 +11,12 @@ import setting from './src/config'
 export default ({ mode }: ConfigEnv) => {
   const env = loadEnv(mode, process.cwd())
   return {
+    server: {
+      port: env.VITE_PORT,
+      force: true,
+      watch: { usePolling: true }
+    },
+    define: {},
     plugins: [
       reactRefresh(),
       legacy({
@@ -23,7 +29,7 @@ export default ({ mode }: ConfigEnv) => {
           {
             libraryName: 'antd',
             esModule: true,
-            resolveStyle: name => `antd/es/${name}/style/index`
+            resolveStyle: (name) => `antd/es/${name}/style/index`
           }
         ]
       }),
@@ -37,28 +43,30 @@ export default ({ mode }: ConfigEnv) => {
       })
     ],
     resolve: {
-      alias: {
-        '@/src': path.resolve(__dirname, 'src'),
-        '@/pages': path.resolve(__dirname, 'src/pages'),
-        '@/components': path.resolve(__dirname, 'src/components'),
-        '@/hooks': path.resolve(__dirname, 'src/hooks'),
-        '@/store': path.resolve(__dirname, 'src/store'),
-        '@/graphql': path.resolve(__dirname, 'src/graphql'),
-        '@/utils': path.resolve(__dirname, 'src/utils')
-      }
+      alias: [
+        { find: /^~/, replacement: '' }, // 解决引入antd路径
+        { find: '@/src', replacement: path.resolve(__dirname, 'src') },
+        { find: '@/pages', replacement: path.resolve(__dirname, 'src/pages') },
+        { find: '@/components', replacement: path.resolve(__dirname, 'src/components') },
+        { find: '@/hooks', replacement: path.resolve(__dirname, 'src/hooks') },
+        { find: '@/store', replacement: path.resolve(__dirname, 'src/store') },
+        { find: '@/utils', replacement: path.resolve(__dirname, 'src/utils') },
+        { find: '@/graphql', replacement: path.resolve(__dirname, 'src/graphql') },
+        { find: '@/services', replacement: path.resolve(__dirname, 'src/services') }
+      ]
     },
     css: {
       preprocessorOptions: {
         less: {
-          modifyVars: {},
+          modifyVars: {
+            // '@primary-color': '#EF435A',
+            // '@btn-default-color': '#EF435A',
+            // '@btn-default-border': '#EF435A'
+          },
           javascriptEnabled: true,
           additionalData: '@import "./src/styles/global.less";'
         }
       }
-    },
-    server: {
-      port: env.VITE_PORT,
-      open: true
     },
     optimizeDeps: {
       include: [
@@ -73,7 +81,8 @@ export default ({ mode }: ConfigEnv) => {
       terserOptions: {
         compress: {
           keep_infinity: true,
-          drop_console: true
+          drop_console: true,
+          drop_debugger: true
         }
       }
     }

@@ -19,17 +19,19 @@ module.exports = {
     }
   },
   plugins: ['@typescript-eslint'],
-  globals: {},
   settings: {
     react: {
       version: 'detect'
     }
   },
   rules: {
-    'prettier/prettier': [2, { endOfLine: 'lf' }],
+    'prettier/prettier': [2, { endOfLine: 'auto' }],
     'import/extensions': 0,
     'import/no-extraneous-dependencies': 0,
     'import/no-unresolved': 0,
-    'no-unused-vars': [2, { args: 'none' }]
+    'no-unused-vars': [2, { args: 'none' }],
+    'no-empty': 0,
+    'react/display-name': 0,
+    'react/prop-types': 0
   }
 }

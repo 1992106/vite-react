@@ -1,0 +1,56 @@
+.login {
+  &-layout {
+    height: 100vh;
+    .flexRAC();
+    background-color: @bg-color-grey;
+  }
+  &-left {
+    display: flex;
+    justify-content: flex-end;
+    height: 100%;
+    width: 50%;
+    background-color: @bg-color;
+  }
+  &-right {
+    flex: 1;
+    margin-left: 40px;
+  }
+  &-welcome {
+    height: 100%;
+    width: 100%;
+    max-width: 720px;
+    background-image: url("/src/assets/images/login_bg.png");
+    background-position: center;
+    background-size: 90% auto;
+    background-repeat: no-repeat;
+    position: relative;
+    .welcome {
+      position: absolute;
+      top: 50%;
+      left: 10%;
+      margin-top: -50%;
+    }
+  }
+  &-header {
+    h1 {
+      color: @text-color-grey;
+    }
+    .tabs {
+      margin-bottom: 24px;
+      & > .ant-btn-link:not(.active) {
+        color: @text-color;
+      }
+    }
+  }
+  &-main {
+    width: 400px;
+    height: 380px;
+    .login-form {
+      width: 80%;
+    }
+    .login-iframe {
+      height: 100%;
+      border: none;
+    }
+  }
+}

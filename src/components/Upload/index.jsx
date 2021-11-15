@@ -2,7 +2,7 @@ import React, { useEffect, useReducer, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Button, Modal, Upload } from 'antd'
 import { PlusOutlined, UploadOutlined, LoadingOutlined } from '@ant-design/icons'
-import { uploadFile } from '@/utils/upload'
+import { uploadFile } from '@/utils/file/upload'
 
 import './index.less'
 
@@ -25,14 +25,14 @@ const reducer = (state = {}, action) => {
   }
 }
 
-const MyUpload = ({ fileList, onChange, ...props }) => {
+const UploadComponent = ({ fileList, onChange, ...props }) => {
   const [files, setFiles] = useState([])
   const [loading, setLoading] = useState(false)
   const [state, dispatch] = useReducer(reducer, initState)
 
   useEffect(() => {
     if (Array.isArray(fileList)) {
-      setFiles(fileList.map(val => ({ ...val, name: val?.filename })))
+      setFiles(fileList.map((val) => ({ ...val, name: val?.filename })))
     }
   }, [fileList])
 
@@ -49,20 +49,20 @@ const MyUpload = ({ fileList, onChange, ...props }) => {
       const { needLoading } = props
       needLoading && setLoading(needLoading)
       uploadFile(file)
-        .then(res => {
+        .then((res) => {
           const fileList = [{ ...res, name: res?.filename }]
           setFiles(fileList)
           onSuccess(fileList, file)
           needLoading && setLoading(false)
         })
-        .catch(err => {
+        .catch((err) => {
           onError(err)
           needLoading && setLoading(false)
         })
     }
   }
 
-  const handlePreview = file => {
+  const handlePreview = (file) => {
     dispatch({
       type: 'imagePreview',
       payload: {
@@ -77,8 +77,8 @@ const MyUpload = ({ fileList, onChange, ...props }) => {
     dispatch({ type: 'cancelPreview', payload: false })
   }
 
-  const handleRemove = file => {
-    const index = files.findIndex(val => val.url === file.url)
+  const handleRemove = (file) => {
+    const index = files.findIndex((val) => val.url === file.url)
     files.splice(index, 1)
     setFiles(files)
     onChange(files)
@@ -94,8 +94,7 @@ const MyUpload = ({ fileList, onChange, ...props }) => {
     <Button
       type={buttonType}
       disabled={buttonDisabled}
-      icon={loading ? <LoadingOutlined /> : <UploadOutlined />}
-    >
+      icon={loading ? <LoadingOutlined /> : <UploadOutlined />}>
       {loading ? '上传中' : uploadText}
     </Button>
   )
@@ -116,8 +115,7 @@ const MyUpload = ({ fileList, onChange, ...props }) => {
           {...defaultProps}
           showUploadList={false}
           listType={listType}
-          className={`${prefixCls}-picture`}
-        >
+          className={`${prefixCls}-picture`}>
           {uploadButton}
         </Upload>
       ) : (
@@ -130,8 +128,7 @@ const MyUpload = ({ fileList, onChange, ...props }) => {
             maxCount={1}
             className={`${prefixCls}-picture`}
             onPreview={handlePreview}
-            onRemove={handleRemove}
-          >
+            onRemove={handleRemove}>
             {files.length === 0 && (listType === 'picture-card' ? uploadCard : uploadButton)}
           </Upload>
           <Modal visible={state.visible} title={state.title} footer={null} onCancel={handleCancel}>
@@ -143,7 +140,7 @@ const MyUpload = ({ fileList, onChange, ...props }) => {
   )
 }
 
-MyUpload.propTypes = {
+UploadComponent.propTypes = {
   fileList: PropTypes.array,
   onChange: PropTypes.func,
   needLoading: PropTypes.bool,
@@ -153,4 +150,4 @@ MyUpload.propTypes = {
   buttonDisabled: PropTypes.bool
 }
 
-export default MyUpload
+export default UploadComponent

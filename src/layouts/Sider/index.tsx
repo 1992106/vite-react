@@ -18,8 +18,7 @@ const SiderComponent: React.FC<SiderProps> = ({ collapsed, routes }) => {
       collapsible
       collapsed={collapsed}
       collapsedWidth={64}
-      width={200}
-    >
+      width={240}>
       <MyLogo collapsed={collapsed} />
       <MyMenu collapsed={collapsed} routes={routes} />
     </Layout.Sider>
